@@ -51,25 +51,17 @@
                             Activity Feeds
                         </div>
                         <div class="card-body">
-                            @php
-                                $int = 0;
-                            @endphp
-
                             @foreach ($show_one->activities as $activity)
                                 @if($activity->activityable->category_id != null)
-                                    <a href="/member/{{ $show_one->id }}">{{ $show_one->name }}</a> learned <a href="/lesson/{{ $activity->activityable->category->lessons[0]->id }}/finish/{{ $activity->activityable->category->words->count() }}">{{ $activity->activityable->category->title }}</a><br>
+                                    <a href="/member/{{ $show_one->id }}">{{ $show_one->name }}</a> learned <a href="/lesson/{{ $activity->activityable->id }}/finish/{{ $activity->activityable->category->words->count() }}">{{ $activity->activityable->category->title }}</a><br>
                                     {{ $activity->activityable->created_at->diffForHumans() }}<br>
                                     <br>
-                                    @php
-                                        $int += 1;
-                                    @endphp
                                 @elseif($activity->activityable->name != null)
                                     <a href="/member/{{ $show_one->id }}">{{ $show_one->name }}</a> followed <a href="/member/{{ $activity->activityable->id }}">{{ $activity->activityable->name }}</a><br>
                                     {{ $activity->activityable->created_at->diffForHumans() }}<br>
                                     <br>
                                 @endif
                             @endforeach
-
                         </div>
                     </div>
                     @else
@@ -85,24 +77,11 @@
                             Activity Feeds
                         </div>
                         <div class="card-body">
-                            @php
-                                $int = 0;
-                            @endphp
-
                             @foreach ($show_one->activities as $activity)
                                 @if($activity->activityable->category_id != null)
-                                <br>{{ $activity->activityable->category->lessons }}<br>
-                                {{-- <br>{{ $activity->activityable->category->lessons[0] }}<br>
-                                <br>{{ $activity->activityable->category->lessons[1] }}<br>
-                                <br>{{ $activity->activityable->category->lessons[2] }}<br> --}}
-
-
-                                    <a href="/member/{{ $show_one->id }}">{{ $show_one->name }}</a> learned <a href="/lesson/{{ $activity->activityable->category->lessons[0]->id }}/finish/{{ $activity->activityable->category->words->count() }}">{{ $activity->activityable->category->title }}</a><br>
+                                    <a href="/member/{{ $show_one->id }}">{{ $show_one->name }}</a> learned <a href="/lesson/{{ $activity->activityable->id }}/finish/{{ $activity->activityable->category->words->count() }}">{{ $activity->activityable->category->title }}</a><br>
                                     {{ $activity->activityable->created_at->diffForHumans() }}<br>
                                     <br>
-                                    @php
-                                        $int += 1;
-                                    @endphp
                                 @elseif($activity->activityable->name != null)
                                     <a href="/member/{{ $show_one->id }}">{{ $show_one->name }}</a> followed <a href="/member/{{ $activity->activityable->id }}">{{ $activity->activityable->name }}</a><br>
                                     {{ $activity->activityable->created_at->diffForHumans() }}<br>

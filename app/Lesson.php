@@ -21,9 +21,4 @@ class Lesson extends Model
     {
         return $this->hasMany('App\LessonWord');
     }
-
-    public function histories()
-    {
-        return $this->morphMany('App\Activity', 'activityable');
-    }
 }

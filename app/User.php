@@ -55,11 +55,6 @@ class User extends Authenticatable
 
      public function activities()
      {
-         return $this->hasMany('App\Activity');
+         return $this->hasMany('App\Activity')->latest();
      }
-
-     public function histories()
-    {
-        return $this->morphMany('App\Activity', 'activityable');
-    }
 }

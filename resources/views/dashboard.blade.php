@@ -34,18 +34,11 @@
                         Activity Feeds
                     </div>
                     <div class="card-body">
-                        @php
-                            $int = 0;
-                        @endphp
-
                         @foreach (Auth::user()->activities as $activity)
                             @if($activity->activityable->category_id != null)
-                                <a href="/member/{{ Auth::user()->id }}">{{ Auth::user()->name }}</a> learned <a href="/lesson/{{ $activity->activityable->category->lessons[$int]->id }}/finish/{{ $activity->activityable->category->words->count() }}">{{ $activity->activityable->category->title }}</a><br>
+                                <a href="/member/{{ Auth::user()->id }}">{{ Auth::user()->name }}</a> learned <a href="/lesson/{{ $activity->activityable->id }}/finish/{{ $activity->activityable->category->words->count() }}">{{ $activity->activityable->category->title }}</a><br>
                                 {{ $activity->activityable->created_at->diffForHumans() }}<br>
                                 <br>
-                                @php
-                                    $int += 1;
-                                @endphp
                             @elseif($activity->activityable->name != null)
                                 <a href="/member/{{ Auth::user()->id }}">{{ Auth::user()->name }}</a> followed <a href="/member/{{ $activity->activityable->id }}">{{ $activity->activityable->name }}</a><br>
                                 {{ $activity->activityable->created_at->diffForHumans() }}<br>
