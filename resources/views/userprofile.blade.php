@@ -9,6 +9,11 @@
                         User Information
                     </div>
                     <div class="card-body text-center">
+                        @if($show_one->image)
+                            <img src="{{ $show_one->image }}" alt="" width="150" height="150"  class="rounded-circle mb-3">
+                        @else 
+                            <img src="/avatars/black.png" alt="" width="150" height="150"  class="rounded-circle mb-3">
+                        @endif
                         <p class="font-weight-bold">{{ $show_one->name }}</p>
 
                         @if(Auth::user()->id != $show_one->id)
@@ -34,8 +39,8 @@
                         User Status
                     </div>
                     <div class="card-body text-center">
-                        <a href="/learned" class="mb-3 d-inline-block text-secondary">learned {{ Auth::user()->lesson_words->count() }} words</a><br>
-                        <a href="/learned/lesson" class="mb-3 d-inline-block text-secondary">learned {{ Auth::user()->lessons->count() }} lessons</a>
+                        <a href="/learned/{{ $show_one->id }}" class="mb-3 d-inline-block text-secondary">learned {{ $show_one->lesson_words->count() }} words</a><br>
+                        <a href="/learned/lesson/{{ $show_one->id }}" class="mb-3 d-inline-block text-secondary">learned {{ $show_one->lessons->count() }} lessons</a>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a href="/followers/{{ $show_one->id }}" class="btn btn-outline-secondary mr-3"><span class="mr-3">{{ $show_one->followers->count() }}</span>Followers</a>
                             <a href="/following/{{ $show_one->id }}" class="btn btn-outline-secondary ml-3"><span class="mr-3">{{ $show_one->following->count() }}</span>Following</a>
@@ -62,6 +67,9 @@
                                     <br>
                                 @endif
                             @endforeach
+                            <div class="d-flex justify-content-center">
+                                {{ $activities->links() }}
+                            </div>
                         </div>
                     </div>
                     @else
@@ -77,7 +85,7 @@
                             Activity Feeds
                         </div>
                         <div class="card-body">
-                            @foreach ($show_one->activities as $activity)
+                            @foreach ($activities as $activity)
                                 @if($activity->activityable->category_id != null)
                                     <a href="/member/{{ $show_one->id }}">{{ $show_one->name }}</a> learned <a href="/lesson/{{ $activity->activityable->id }}/finish/{{ $activity->activityable->category->words->count() }}">{{ $activity->activityable->category->title }}</a><br>
                                     {{ $activity->activityable->created_at->diffForHumans() }}<br>
@@ -88,6 +96,9 @@
                                     <br>
                                 @endif
                             @endforeach
+                            <div class="d-flex justify-content-center">
+                                {{ $activities->links() }}
+                            </div>
                         </div>
                     </div>
                 @endif

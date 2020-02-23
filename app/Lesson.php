@@ -17,6 +17,11 @@ class Lesson extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function connectCategory($id){
+        Category::where('category_id',$id)->get();
+        return back();
+    }
+
     public function lesson_words()
     {
         return $this->hasMany('App\LessonWord');

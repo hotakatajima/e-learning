@@ -87,11 +87,17 @@ class LessonController extends Controller
         return view('lesson_result_one',compact('lesson_results','word_count'));
     }
 
-    public function showResultAll(){
+    public function showResultAll(Request $request){
 
-        $all_results = Lesson::where('user_id', Auth::user()->id )->get();
+        $all_results = Lesson::where('user_id', $request->id )->get();
 
         return view('all_learned',compact('all_results'));
+    }
+
+    public function showResultAllLesson(Request $request){
+
+        $all_results = Lesson::where('user_id',$request->id)->get();
+        return view('all_learned_lesson',compact('all_results'));
     }
 
 }

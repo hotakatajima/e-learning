@@ -41,7 +41,7 @@
               <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/user/category">Category</a>
+              <a class="nav-link" href="/user/category/1">Category</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/member">Member</a>

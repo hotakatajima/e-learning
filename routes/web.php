@@ -23,7 +23,7 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 
 // -------- user関連 ------------
 Route::get('/useredit/{id}', 'UserController@showUser');
-Route::post('/useredit', 'UserController@updateUser');
+Route::patch('/useredit', 'UserController@updateUser');
 
 // -------- relation関連 ------------
 Route::get('/member', 'UserController@allUsers');
@@ -40,7 +40,7 @@ Route::post('/create', 'CategoryController@createCategory');
 Route::get('/edit/{id}', 'CategoryController@edit');
 Route::patch('/edit/{id}', 'CategoryController@update');
 Route::delete('/delete/{id}', 'CategoryController@delete');
-Route::get('user/category', 'CategoryController@showUserCategory');
+Route::get('user/category/{id}', 'CategoryController@showUserCategory');
 
 // -------- word関連 ------------
 Route::get('category/{id}/word', 'WordController@allWords');
@@ -60,5 +60,5 @@ Route::get('lesson/{lesson_id}/finish/{word_count}', 'LessonController@showResul
 // Route::get('lesson/{lesson_id}/finish/{word_count}', 'LessonController@showResult');
 
 // -------- 履歴関連 ------------
-Route::get('learned', 'LessonController@showResultAll');
-Route::get('learned/lesson', 'LessonController@showResultAllLesson');
+Route::get('learned/{id}', 'LessonController@showResultAll');
+Route::get('learned/lesson/{id}', 'LessonController@showResultAllLesson');

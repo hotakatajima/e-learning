@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use \App\Word;
 use \App\WordAnswer;
+use App\Http\Requests\WordRequest;
 
 class WordController extends Controller
 {
@@ -22,12 +23,17 @@ class WordController extends Controller
 
     public function createWord(Request $request){
 
+        $validator = $request->validate([
+            'word' => ['required', 'string', 'max:50'],
+            'choice' => ['required', 'max:50'],
+            'choice.*' => ['required', 'max:50'],
+            'correct' => []
+        ]);
+
         $word = Word::create([
             'category_id' => $request->id,
             'text' => $request->word
         ]);
-
-        // $word_id = Word::latest()->first()->id;
 
         for($i=0;$i<=2;$i++){
             WordAnswer::create([
@@ -45,6 +51,14 @@ class WordController extends Controller
     }
 
     public function update(Request $request){
+
+        $validator = $request->validate([
+            'text' => ['required', 'string', 'max:50'],
+            'choice' => ['required','string','max:50'],
+            'choice.*' => ['required','string','max:50'],
+            'correct' => []
+        ]);
+
         $update = Word::find($request->word_id);
         $update->update([
             'category_id' => $request->category_id,

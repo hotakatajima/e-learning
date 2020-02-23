@@ -7,12 +7,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
 use \App\User;
 use Hash; // または use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
     public function allUsers()
     {
-        $all = User::all();
+        $all = User::paginate(4);
         return view('member',compact('all'));
     }
 
@@ -25,17 +26,16 @@ class UserController extends Controller
     public function showUsers(Request $request)
     {
         $show_one = User::find($request->id);
-        return view('userprofile', compact('show_one') );
+        $activities = $show_one->activities()->paginate(5);
+        return view('userprofile', compact('show_one', 'activities') );
     }
 
-    public function updateUser(Request $request)
+    public function updateUser(UserRequest $request)
     {
-        $validator = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-
+        $imageName = time().".".$request->avatar->getClientOriginalExtension();
+        $path = "/avatars/".$imageName;
+        $request->avatar->move(public_path('avatars'), $imageName);
+        
         $update = User::find($request->id);
         $update->update([
             'id' => $request->id,
@@ -44,6 +44,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'image' => $request->image,
             'user' => $request->status,
+            'image' => $path,
         ]);
         return back();
     }
