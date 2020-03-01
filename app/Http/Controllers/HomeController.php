@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $activities = Activity::paginate(5);
+        $activities = Activity::orderBy('created_at' , 'desc')->paginate(5);
         return view('dashboard',['activities' => $activities]);
     }
 }

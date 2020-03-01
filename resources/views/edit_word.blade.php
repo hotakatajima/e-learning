@@ -24,10 +24,10 @@
             <input type="text" name="choice[]" class="form-control" value="{{ $word_answer->text }}" required>
             <input type="radio" name="correct" value="{{ $key }}" {{ $word_answer->is_correct ? "checked" : "" }}><br>
             <input type="hidden" name="word_answer_num_{{ $key }}" value="{{ $word_answer->id }}">
-            @if($errors->has('choice'.$key))
+            @if($errors->has('choice.$key'))
             <span class="help-block text-danger">
                 <strong>
-                    {{ $errors->first('choice'.$key) }}
+                    {{ $errors->first('choice.$key') }}
                 </strong>
             </span><br>
         @endif

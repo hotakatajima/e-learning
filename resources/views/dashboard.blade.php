@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -14,7 +18,7 @@
                         @else
                             <img src="/avatars/black.png" alt="" width="150" height="150"  class="rounded-circle mb-3">
                         @endif
-                        <p class="font-weight-bold  text-center">{{ Auth::user()->name }}</p>
+                        <p class="font-weight-bold  text-center hotaka">{{ Auth::user()->name }}</p>
                         <p class="text-center">{{ Auth::user()->email }}</p>
                         <div class="text-center">
                             <a href="/useredit/{{ Auth::user()->id }}" class="btn btn-warning d-inline-block">Edit profile</a>

@@ -68,7 +68,7 @@ class WordController extends Controller
         for($i=0;$i<=2;$i++){
             $updates = WordAnswer::find($request->{'word_answer_num_'.$i});
             $updates->update([
-                'word_id' => $request->word_id,
+                'word_id' => $request->id,
                 'text' => $request->choice[$i],
                 'is_correct' => $request->correct == $i
             ]);
