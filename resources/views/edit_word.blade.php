@@ -10,28 +10,41 @@
         
         <label>Word</label>
         <input type="text" name="text" class="form-control" value="{{ $edits->text }}" required>
-        <input type="hidden" name="id" class="form-control" value="{{ $edits->id }}">
         @if($errors->has('text'))
           <span class="help-block text-danger">
               <strong>
                   {{ $errors->first('text')}}
               </strong>
-          </span><br>
+          </span><br><br>
+        @else
+          <br><br>
         @endif
 
         @foreach ($edits->word_answers as $key => $word_answer)
             <label>Choices {{ $key + 1}}</label>
-            <input type="text" name="choice[]" class="form-control" value="{{ $word_answer->text }}" required>
+            <input type="text" name="{{ $key }}" class="form-control" value="{{ $word_answer->text }}" required>
             <input type="radio" name="correct" value="{{ $key }}" {{ $word_answer->is_correct ? "checked" : "" }}><br>
             <input type="hidden" name="word_answer_num_{{ $key }}" value="{{ $word_answer->id }}">
-            @if($errors->has('choice.$key'))
-            <span class="help-block text-danger">
-                <strong>
-                    {{ $errors->first('choice.$key') }}
-                </strong>
-            </span><br>
-        @endif
         @endforeach
+        @if($errors->has('0'))
+          <span class="help-block text-danger">
+              <strong>
+                  {{ $errors->first('0') }}
+              </strong>
+          </span><br>
+        @elseif($errors->has('1'))
+          <span class="help-block text-danger">
+            <strong>
+                {{ $errors->first('1') }}
+            </strong>
+          </span><br>
+        @else
+          <span class="help-block text-danger">
+            <strong>
+                {{ $errors->first('2') }}
+            </strong>
+          </span><br>
+        @endif
         
         <div class="buttons mt-5" style="margin-bottom:280px;">
             <a href="/category/{{ $edits->category->id }}/word" class="form-control float-right bg-dark text-light text-center d-inline-block w-25">Back</a>

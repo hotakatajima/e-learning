@@ -13,6 +13,11 @@ use \App\Activity;
 
 class LessonController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function createLesson(Request $request){
 
         $lesson = Lesson::create([

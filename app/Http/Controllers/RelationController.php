@@ -9,6 +9,11 @@ use \App\Activity;
 
 class RelationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function followUser(Request $request)
     { 
         $follow = User::find($request->follower_id);

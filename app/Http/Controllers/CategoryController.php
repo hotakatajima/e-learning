@@ -10,6 +10,10 @@ use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function showCreate(){
         return view('create_category');
