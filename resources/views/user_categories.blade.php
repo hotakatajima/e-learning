@@ -47,7 +47,7 @@
                 @endforeach
             </div>
         @else 
-            ここに何か書くよー
+            ここに何か書くよー（Gut test）
         @endif
     </div>
 
