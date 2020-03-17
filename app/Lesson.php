@@ -26,4 +26,9 @@ class Lesson extends Model
     {
         return $this->hasMany('App\LessonWord');
     }
+
+    public function activities()
+    {
+        return $this->morphMany('App\Activity', 'activityable');  
+    }
 }

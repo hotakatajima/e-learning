@@ -31,7 +31,7 @@ class UserController extends Controller
     public function showUsers(Request $request)
     {
         $show_one = User::find($request->id);
-        $activities = $show_one->activities()->paginate(5);
+        $activities = $show_one->orderlatest()->paginate(5);
         return view('userprofile', compact('show_one', 'activities') );
     }
 

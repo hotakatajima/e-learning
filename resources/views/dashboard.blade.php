@@ -46,6 +46,9 @@
                     </div>
                     <div class="card-body">
                         @foreach ($activities as $activity)
+
+
+                        {{ $activity->activityable }}
                             @if($activity->activityable->category_id != null)
                                 <a href="/member/{{ $activity->user->id }}">{{ $activity->user->name }}</a> learned <a href="/lesson/{{ $activity->activityable->id }}/finish/{{ $activity->activityable->category->words->count() }}">{{ $activity->activityable->category->title }}</a><br>
                                 {{ $activity->activityable->created_at->diffForHumans() }}<br>

@@ -53,8 +53,13 @@ class User extends Authenticatable
          }
      }
 
-     public function activities()
+     public function orderlatest()
      {
          return $this->hasMany('App\Activity')->latest();
      }
+
+     public function activities()
+    {
+        return $this->morphMany('App\Activity', 'activityable');  
+    }
 }
