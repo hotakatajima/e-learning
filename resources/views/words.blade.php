@@ -21,7 +21,7 @@
                     <form action="/category/{{$word->category->id}}/delete/{{$word->id}}" method="post">
                         {{ csrf_field() }}
                         @method('DELETE')
-                        <button type="submit" class="form-control float-right bg-dark text-light text-center mx-auto">Delete</a>
+                        <button type="submit" class="form-control float-right bg-dark text-light text-center mx-auto">Delete</button>
                     </form>
                 </td>
             </tr>
