@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
 use \App\User;
+use \App\Activity;
 use Hash; // または use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 
@@ -28,9 +29,9 @@ class UserController extends Controller
         return view('useredit', compact('show_one') );
     }
 
-    public function showUsers(Request $request)
+    public function showUsers($id)
     {
-        $show_one = User::find($request->id);
+        $show_one = User::find($id);
         $activities = $show_one->orderlatest()->paginate(5);
         return view('userprofile', compact('show_one', 'activities') );
     }
