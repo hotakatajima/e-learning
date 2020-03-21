@@ -19,12 +19,15 @@ class RelationController extends Controller
         $follow = User::find($request->follower_id);
         Auth::user()->following()->attach($follow);
 
+        $delete = Activity::where('user_id',Auth::user()->id)->where('activityable_id',$follow->id)->where('activityable_type','App\User');
+        $delete->delete();
+
         Activity::create([
             'user_id' => Auth::user()->id,
             'activityable_id' =>  $follow->id,
             'activityable_type' => 'App\User',
         ]);
-        
+
         return back();
     }
 

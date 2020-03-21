@@ -90,14 +90,14 @@ class LessonController extends Controller
 
     public function showResultAll(Request $request){
 
-        $all_results = Lesson::where('user_id', $request->id )->get();
+        $all_results = Lesson::where('user_id', $request->id )->orderBy('created_at' , 'desc')->get();
 
         return view('all_learned',compact('all_results'));
     }
 
     public function showResultAllLesson(Request $request){
 
-        $all_results = Lesson::where('user_id',$request->id)->get();
+        $all_results = Lesson::where('user_id',$request->id)->orderBy('created_at' , 'desc')->get();
         return view('all_learned_lesson',compact('all_results'));
     }
 

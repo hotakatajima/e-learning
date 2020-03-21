@@ -46,7 +46,7 @@
                     </div>
                 @endforeach
             </div>
-        @else
+        @else 
             <div class="row">
                 @foreach ($categories as $category)
                     <div class="col-6">
