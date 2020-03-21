@@ -40,7 +40,7 @@ Route::post('/create', 'CategoryController@createCategory');
 Route::get('/edit/{id}', 'CategoryController@edit');
 Route::patch('/edit/{id}', 'CategoryController@update');
 Route::delete('/delete/{id}', 'CategoryController@delete');
-Route::get('user/category/{id}', 'CategoryController@showUserCategory');
+Route::get('/user/category/{id}', 'CategoryController@showUserCategory');
 
 // -------- word関連 ------------
 Route::get('category/{id}/word', 'WordController@allWords');

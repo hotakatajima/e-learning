@@ -19,7 +19,7 @@
                         {{ $all_result->category->title }}
                     </td>
                     <td class="p-3">
-                        {{ $all_result->created_at }}
+                        {{ $all_result->created_at->diffForHumans() }}
                     </td>
                 </tr>
             @endforeach    

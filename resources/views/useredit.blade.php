@@ -65,7 +65,6 @@
             @endif
         </div>
         <input type="hidden" name="id" value="{{ $show_one->id }}"><br>
-        <input type="hidden" name="status" value=""><br>
 
         <div class="form-group text-center">
             <button class="form-control btn btn-warning text-light w-50" type="submit">Submit</button>
