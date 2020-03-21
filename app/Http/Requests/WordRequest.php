@@ -24,14 +24,14 @@ class WordRequest extends FormRequest
     public function rules()
     {
         return [
-            'word' => ['required', 'string', 'max:50'],
-            'choice.*' => ['required', 'max:50'],
-            'correct' => [],
+            // 'word' => ['required', 'max:50'],
+            // 'choice.*' => ['required', 'max:50'],
+            // 'correct' => [],
 
-            'text' => ['required','max:50'],
-            '0' => ['required','max:50'],
-            '1' => ['required','max:50'],
-            '2' => ['required','max:50'],
+            // 'text' => ['required','max:50'],
+            // '0' => ['required','max:50'],
+            // '1' => ['required','max:50'],
+            // '2' => ['required','max:50'],
         ];
     }
 
