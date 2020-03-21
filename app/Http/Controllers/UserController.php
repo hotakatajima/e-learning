@@ -38,20 +38,27 @@ class UserController extends Controller
 
     public function updateUser(UserRequest $request)
     {
-        $imageName = time().".".$request->avatar->getClientOriginalExtension();
-        $path = "/avatars/".$imageName;
-        $request->avatar->move(public_path('avatars'), $imageName);
-        
-        $update = User::find($request->id);
-        $update->update([
-            'id' => $request->id,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'image' => $request->image,
-            'user' => $request->status,
-            'image' => $path,
-        ]);
+        if($request->avatar == null)
+        {
+            $update = User::find($request->id);
+            $update->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+        }else{
+            $imageName = time().".".$request->avatar->getClientOriginalExtension();
+            $path = "/avatars/".$imageName;
+            $request->avatar->move(public_path('avatars'), $imageName);
+            
+            $update = User::find($request->id);
+            $update->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'image' => $path,
+            ]);
+        }
         return back();
     }
 

@@ -52,7 +52,7 @@
                                 <br>
                             @elseif($activity->activityable->name != null)
                                 <a href="/member/{{ $activity->user->id }}">{{ $activity->user->name }}</a> followed <a href="/member/{{ $activity->activityable->id }}">{{ $activity->activityable->name }}</a><br>
-                                {{ $activity->activityable->created_at->diffForHumans() }}<br>
+                                {{ $activity->created_at->diffForHumans() }}<br>
                                 <br>
                             @endif
                         @endforeach

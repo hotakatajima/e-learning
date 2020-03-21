@@ -46,10 +46,10 @@ class CategoryController extends Controller
             return view('user_categories',compact('categories','number'));
         }else{
             $cate = Lesson::where('user_id',Auth::user()->id)->get();
-            $categories = $cate->groupBy('category_id');
             $number = $request->id;
-            $others = Category::all();
-            return view('user_categories',compact('categories','number','others'));
+            $learned = $cate->pluck('category_id')->unique()->values()->all();
+            $categories = Category::whereNotIn('id' , $learned)->get();
+            return view('user_categories',compact('categories','number'));
         }
     }
 
