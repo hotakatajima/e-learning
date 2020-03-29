@@ -52,6 +52,7 @@
             <label for="formGroupExampleInput5">Image</label><br>
             @if(Auth::user()->image)
                 <img src="{{ Auth::user()->image }}" alt="" width="200" height="200" class="rounded-circle">
+                {{-- <img src="data:image/png;base64,{{ Auth::user()->image }} "> --}}
             @else
                 <img src="/avatars/black.png" alt="" width="150" height="150"  class="rounded-circle mb-3">
             @endif
